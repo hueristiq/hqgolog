@@ -39,11 +39,11 @@ func (logger *Logger) Log(event *Event) {
 
 	if _, ok = event.metadata["label"]; !ok {
 		labels := map[levels.LevelInt]string{
-			levels.Levels[levels.LevelFatal]:   "FTL",
-			levels.Levels[levels.LevelError]:   "ERR",
-			levels.Levels[levels.LevelWarning]: "WRN",
-			levels.Levels[levels.LevelInfo]:    "INF",
-			levels.Levels[levels.LevelDebug]:   "DBG",
+			levels.Levels[levels.LevelFatal]: "FTL",
+			levels.Levels[levels.LevelError]: "ERR",
+			levels.Levels[levels.LevelWarn]:  "WRN",
+			levels.Levels[levels.LevelInfo]:  "INF",
+			levels.Levels[levels.LevelDebug]: "DBG",
 		}
 
 		if label, ok = labels[event.level]; ok {
@@ -107,8 +107,8 @@ func (logger *Logger) Info() *Event {
 	return event
 }
 
-func (logger *Logger) Warning() *Event {
-	level := levels.Levels[levels.LevelWarning]
+func (logger *Logger) Warn() *Event {
+	level := levels.Levels[levels.LevelWarn]
 
 	event := &Event{
 		logger:   logger,

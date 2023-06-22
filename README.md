@@ -30,7 +30,7 @@ func main() {
 
 	hqgolog.Print().Msg("Print message")
 	hqgolog.Info().Msg("Info message")
-	hqgolog.Warning().Msg("Warning message")
+	hqgolog.Warn().Msg("Warn message")
 	hqgolog.Error().Msg("Error message")
 	hqgolog.Fatal().Msg("Fatal message")
 }

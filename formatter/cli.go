@@ -69,7 +69,7 @@ func (cli *CLI) colorizeLabel(event *Log) {
 		event.Metadata["label"] = au.BrightRed(label).Bold().String()
 	case levels.Levels[levels.LevelError]:
 		event.Metadata["label"] = au.BrightRed(label).Bold().String()
-	case levels.Levels[levels.LevelWarning]:
+	case levels.Levels[levels.LevelWarn]:
 		event.Metadata["label"] = au.BrightYellow(label).Bold().String()
 	case levels.Levels[levels.LevelInfo]:
 		event.Metadata["label"] = au.BrightBlue(label).Bold().String()

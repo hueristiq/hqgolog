@@ -53,8 +53,8 @@ func Info() (event *Event) {
 	return
 }
 
-func Warning() (event *Event) {
-	level := levels.Levels[levels.LevelWarning]
+func Warn() (event *Event) {
+	level := levels.Levels[levels.LevelWarn]
 
 	event = &Event{
 		logger:   DefaultLogger,
