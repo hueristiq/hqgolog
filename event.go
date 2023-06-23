@@ -6,7 +6,7 @@ import (
 	"github.com/hueristiq/hqgolog/levels"
 )
 
-type Event struct {
+type Event struct { //nolint:govet // To be refactored.
 	level    levels.LevelInt
 	message  string
 	metadata map[string]string

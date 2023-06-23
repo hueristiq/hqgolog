@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type Streamer struct {
+type Streamer struct { //nolint:govet // To be refactored.
 	Logger *Logger
 	buf    *bytes.Buffer
 	// If prefix == stdout, colors green
@@ -68,6 +68,7 @@ func (l *Streamer) Write(p []byte) (n int, err error) {
 	}
 
 	err = l.OutputLines()
+
 	return
 }
 
@@ -75,7 +76,9 @@ func (l *Streamer) Close() error {
 	if err := l.Flush(); err != nil {
 		return err
 	}
+
 	l.buf = bytes.NewBuffer([]byte(""))
+
 	return nil
 }
 
@@ -86,6 +89,7 @@ func (l *Streamer) Flush() error {
 	}
 
 	l.out(string(p))
+
 	return nil
 }
 
@@ -100,7 +104,7 @@ func (l *Streamer) OutputLines() error {
 				// put back into buffer, it's not a complete line yet
 				//  Close() or Flush() have to be used to flush out
 				//  the last remaining line if it does not end with a newline
-				if _, err := l.buf.WriteString(line); err != nil {
+				if _, err = l.buf.WriteString(line); err != nil {
 					return err
 				}
 			}
@@ -121,6 +125,7 @@ func (l *Streamer) OutputLines() error {
 func (l *Streamer) FlushRecord() string {
 	buffer := l.persist
 	l.persist = ""
+
 	return buffer
 }
 
@@ -129,15 +134,16 @@ func (l *Streamer) out(str string) {
 		return
 	}
 
-	if l.record == true {
-		l.persist = l.persist + str
+	if l.record {
+		l.persist += str
 	}
 
-	if l.prefix == "stdout" {
+	switch l.prefix {
+	case "stdout":
 		str = l.colorOkay + l.prefix + l.colorReset + " " + str
-	} else if l.prefix == "stderr" {
+	case "stderr":
 		str = l.colorFail + l.prefix + l.colorReset + " " + str
-	} else {
+	default:
 		str = l.prefix + str
 	}
 

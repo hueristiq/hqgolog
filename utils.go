@@ -12,7 +12,7 @@ func appendRest(data []byte, character string) []byte {
 
 	width, _, _ := term.GetSize(0)
 
-	dataStr = dataStr + strings.Repeat(character[0:1], width-dataLen)
+	dataStr += strings.Repeat(character[0:1], width-dataLen)
 
 	return []byte(dataStr)
 }

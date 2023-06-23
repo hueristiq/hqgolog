@@ -9,22 +9,22 @@ import (
 	"github.com/hueristiq/hqgolog/writer"
 )
 
-type Logger struct {
+type Logger struct { //nolint:govet // To be refactored.
 	formatter formatter.Formatter
 	maxLevel  levels.LevelInt
 	writer    writer.Writer
 }
 
-func (logger *Logger) SetFormatter(formatter formatter.Formatter) {
-	logger.formatter = formatter
+func (logger *Logger) SetFormatter(f formatter.Formatter) {
+	logger.formatter = f
 }
 
 func (logger *Logger) SetMaxLevel(level levels.LevelStr) {
 	logger.maxLevel = levels.Levels[level]
 }
 
-func (logger *Logger) SetWriter(writer writer.Writer) {
-	logger.writer = writer
+func (logger *Logger) SetWriter(w writer.Writer) {
+	logger.writer = w
 }
 
 func (logger *Logger) Log(event *Event) {

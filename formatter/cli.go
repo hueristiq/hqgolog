@@ -31,29 +31,18 @@ func (cli *CLI) Format(event *Log) (data []byte, err error) {
 	buffer.Grow(len(event.Message))
 
 	if label, ok := event.Metadata["label"]; ok && label != "" {
-		buffer.WriteRune('[')
+		buffer.WriteByte('[')
 		buffer.WriteString(label)
-		buffer.WriteRune(']')
-		buffer.WriteRune(' ')
-		// delete(event.Metadata, "label")
+		buffer.WriteByte(']')
+		buffer.WriteByte(' ')
 	}
 
 	buffer.WriteString(event.Message)
 
-	// for k, v := range event.Metadata {
-	// 	buffer.WriteRune(' ')
-	// 	buffer.WriteString(cli.colorizeKey(k))
-	// 	buffer.WriteRune('=')
-	// 	buffer.WriteString(v)
-	// }
 	data = buffer.Bytes()
 
 	return
 }
-
-// func (cli *CLI) colorizeKey(key string) string {
-// 	return au.Bold(key).String()
-// }
 
 func (cli *CLI) colorizeLabel(event *Log) {
 	label := event.Metadata["label"]
