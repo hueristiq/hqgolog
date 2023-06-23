@@ -42,4 +42,4 @@ func main() {
 
 ## Licensing
 
-This tool is distributed under the [MIT license](https://github.com/hueristiq/hqgolog/blob/master/LICENSE).
+This package is distributed under the [MIT license](https://github.com/hueristiq/hqgolog/blob/master/LICENSE).
